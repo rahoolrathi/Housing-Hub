@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:housing_hub/Screens/main_screen.dart';
 
+import 'bottom_navigation_bar.dart';
+
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,6 @@ class LoginPage extends StatelessWidget {
           icon: Icon(Icons.arrow_back_ios,
             size: 20,
             color: Colors.black,),
-
 
         ), systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
@@ -73,7 +74,7 @@ class LoginPage extends StatelessWidget {
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> MainPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> BottomNavigationBer()));
                         print("login");
                       },
                       color: Color(0xff0095FF),
@@ -87,15 +88,12 @@ class LoginPage extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
                         color: Colors.white,
-
                       ),
                       ),
 
                     ),
                   ),
                 ),
-
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
