@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-class ChatPage extends StatelessWidget {
+class SearchPage extends StatelessWidget {
   int index=0;
   @override
   Widget build(BuildContext context) {
@@ -9,7 +9,7 @@ class ChatPage extends StatelessWidget {
         home:Scaffold(
           body: Center(
             child: Text(
-              "chat Page",
+              "Search Page",
               style: TextStyle(
                   fontSize: 70,
                   fontWeight: FontWeight.bold
