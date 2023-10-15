@@ -7,16 +7,19 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home:Scaffold(
-          body: Center(
-            child: Text(
-              "Search Page",
-              style: TextStyle(
-                  fontSize: 70,
-                  fontWeight: FontWeight.bold
-              ),
+          backgroundColor: Colors.grey.shade100,
+          appBar: AppBar(
+              backgroundColor: Colors.white,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Icon(Icons.back_hand),
+                Text("Homes for sale")
+              ],
             ),
           ),
-        )
+          ),
     );
   }
 }

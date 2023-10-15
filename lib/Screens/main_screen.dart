@@ -15,26 +15,26 @@ class MainPage extends StatelessWidget {
   ];
   final PropertyType = [
     'Home',
-    'Home',
-    'Home',
-    'Home',
+    'Flat',
+    'Apartment',
+    'Hotel',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.greenAccent,
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           _buildSearchBar(),
           SizedBox(
-            height: 50,
+            height: 30,
           ),
-
-             Expanded(
-               child:SingleChildScrollView(
-                 child:Container(
+          Expanded(
+              child: SingleChildScrollView(
+            child: Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade100,
                 borderRadius: BorderRadius.only(
@@ -58,41 +58,9 @@ class MainPage extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  GridView.builder(
-                      padding: EdgeInsets.all(10), // Adjust padding here
-                      shrinkWrap: true,
-                      itemCount: 4,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 2.5,
-                      ),
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              PropertyIcons[index],
-                              Text(
-                                PropertyType[index],
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                  GridComponnets(),
                   Container(
-                    padding: EdgeInsets.only(left: 15,right: 15),
+                    padding: EdgeInsets.only(left: 15, right: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -101,26 +69,83 @@ class MainPage extends StatelessWidget {
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
                             )),
-                        TextButton(onPressed: (){}, child: Text("See all"),),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text("See all"),
+                        ),
                       ],
                     ),
                   ),
-                  SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        for(var i=0;i<10;i++)
-                         ListComponnetWidget(orientation: LayoutOrientation.vertical,height: vertical_height,width: vertical_width)
-                      ],
-                    ),
-                  )
+                  BottomComponnets()
                 ],
-
               ),
             ),
-             ))
+          ))
         ],
       ),
+    );
+  }
+  Widget BottomComponnets(){
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (var i = 0; i < 10; i++)
+            ListComponnetWidget(
+                orientation: LayoutOrientation.vertical,
+                height: vertical_height,
+                width: vertical_width)
+        ],
+      ),
+    );
+  }
+
+  Widget GridComponnets() {
+    return GridView.builder(
+      padding: EdgeInsets.all(10),
+      // Adjust padding here
+      shrinkWrap: true,
+      itemCount: 4,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 2,
+      ),
+      itemBuilder: (context, index) {
+        return Container(
+          margin: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              PropertyIcons[index],
+              SizedBox(
+                width: 5,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    PropertyType[index],
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text(
+                    "120 items",
+                    style: TextStyle(color: Colors.black54),
+                  )
+                ],
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -162,6 +187,3 @@ class MainPage extends StatelessWidget {
     );
   }
 }
-
-
-

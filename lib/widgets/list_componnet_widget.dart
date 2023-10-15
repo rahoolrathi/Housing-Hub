@@ -54,7 +54,7 @@ class _ListComponnetWidgetState extends State<ListComponnetWidget> {
   Widget Vertical(){
     return Column(
       children: [
-        ImageContainer(double.infinity,100),
+        ImageContainer(double.infinity,100,false),
         SizedBox(height: 15),
         TextContainer()
       ],
@@ -64,29 +64,43 @@ class _ListComponnetWidgetState extends State<ListComponnetWidget> {
 
   Widget Horizontal(){
     return Row(
-      children: [ImageContainer(140,double.infinity), SizedBox(width: 15), TextContainer()],
+      children: [ImageContainer(140,double.infinity,false), SizedBox(width: 15), TextContainer()],
     );
   }
 
-  Widget ImageContainer(double w,double h) {
+  Widget ImageContainer(double w, double h, bool isSold) {
     if (property.isEmpty) {
-      return Container(); // Return an empty container if property list is empty
+      return Container(); // Return an empty container if the property list is empty
     }
-    return Container(
-      width:w,
-      height:h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image(
-          image: AssetImage(property[0].frontImage),
-          fit: BoxFit.cover,
+    return Stack(
+      children: <Widget>[
+        Container(
+          width: w,
+          height: h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image(
+              image: AssetImage(property[0].frontImage),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
-      ),
+        Positioned(
+          top: 10,
+          left: 10,
+          child: Icon(
+            isSold ? Icons.check_circle : Icons.monetization_on,
+            color: Colors.yellow,
+            size: 30,
+          ),
+        ),
+      ],
     );
   }
+
 
   Widget TextContainer() {
     return Expanded(
