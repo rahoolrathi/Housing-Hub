@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:housing_hub/data.dart';
+
+import '../defined_constants.dart';
+import '../widgets/list_componnet_widget.dart';
 
 class MainPage extends StatelessWidget {
   final List<Property> properties = getPropertyList();
@@ -25,11 +29,12 @@ class MainPage extends StatelessWidget {
         children: <Widget>[
           _buildSearchBar(),
           SizedBox(
-            height: 30,
+            height: 50,
           ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(top: 20),
+
+             Expanded(
+               child:SingleChildScrollView(
+                 child:Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade100,
                 borderRadius: BorderRadius.only(
@@ -53,14 +58,13 @@ class MainPage extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Expanded(
-                    child: GridView.builder(
+                  GridView.builder(
                       padding: EdgeInsets.all(10), // Adjust padding here
                       shrinkWrap: true,
                       itemCount: 4,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 1.9,
+                        childAspectRatio: 2.5,
                       ),
                       itemBuilder: (context, index) {
                         return Container(
@@ -87,12 +91,34 @@ class MainPage extends StatelessWidget {
                         );
                       },
                     ),
+                  Container(
+                    padding: EdgeInsets.only(left: 15,right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text("New Projects",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            )),
+                        TextButton(onPressed: (){}, child: Text("See all"),),
+                      ],
+                    ),
                   ),
+                  SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for(var i=0;i<10;i++)
+                         ListComponnetWidget(orientation: LayoutOrientation.vertical,height: vertical_height,width: vertical_width)
+                      ],
+                    ),
+                  )
                 ],
 
               ),
             ),
-          ),
+             ))
         ],
       ),
     );

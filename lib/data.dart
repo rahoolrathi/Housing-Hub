@@ -75,7 +75,8 @@ List<Property> getPropertyList(){
       "SALE",
       "Ibe House",
       "4,500.00",
-      "Florida",
+      "F"
+          "lorida",
       "4,100",
       "4.5",
       "The living is easy in this impressive, generously proportioned contemporary residence with lake and ocean views, located within a level stroll to the sand and surf.",
