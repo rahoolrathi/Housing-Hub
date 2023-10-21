@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:housing_hub/Screens/detail_screen.dart';
 import '../data.dart';
 
 final List<Property> property = getPropertyList();
@@ -41,9 +42,16 @@ class _ListComponnetWidgetState extends State<ListComponnetWidget> {
                       ),
                     ],
                   ),
-                  child: widget.orientation == LayoutOrientation.vertical
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black
+                    ),
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailScreen()));
+                      },
+                      child:widget.orientation == LayoutOrientation.vertical
                       ? Vertical(widget.issold)
-                      : Horizontal(widget.issold)
+                      : Horizontal(widget.issold))
               );
             },
           );
