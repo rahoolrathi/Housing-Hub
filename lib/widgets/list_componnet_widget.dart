@@ -6,11 +6,12 @@ final List<Property> property = getPropertyList();
 enum LayoutOrientation { vertical, horizontal }
 
 class ListComponnetWidget extends StatefulWidget {
-  const ListComponnetWidget({required this.orientation, required this.width, required this.height});
+  const ListComponnetWidget({required this.orientation, required this.width, required this.height,required this.issold});
 
   final LayoutOrientation orientation;
   final double height;
   final double width;
+  final bool issold;
 
   @override
   _ListComponnetWidgetState createState() => _ListComponnetWidgetState();
@@ -41,8 +42,8 @@ class _ListComponnetWidgetState extends State<ListComponnetWidget> {
                     ],
                   ),
                   child: widget.orientation == LayoutOrientation.vertical
-                      ? Vertical()
-                      : Horizontal()
+                      ? Vertical(widget.issold)
+                      : Horizontal(widget.issold)
               );
             },
           );
@@ -51,10 +52,10 @@ class _ListComponnetWidgetState extends State<ListComponnetWidget> {
   }
   // Vertical Widget
 
-  Widget Vertical(){
+  Widget Vertical(bool issold){
     return Column(
       children: [
-        ImageContainer(double.infinity,100,false),
+        ImageContainer(double.infinity,100,issold),
         SizedBox(height: 15),
         TextContainer()
       ],
@@ -62,9 +63,9 @@ class _ListComponnetWidgetState extends State<ListComponnetWidget> {
   }
   // Horizonatal Widget
 
-  Widget Horizontal(){
+  Widget Horizontal(bool issold){
     return Row(
-      children: [ImageContainer(140,double.infinity,false), SizedBox(width: 15), TextContainer()],
+      children: [ImageContainer(140,double.infinity,issold), SizedBox(width: 15), TextContainer()],
     );
   }
 
@@ -93,7 +94,7 @@ class _ListComponnetWidgetState extends State<ListComponnetWidget> {
           left: 10,
           child: Icon(
             isSold ? Icons.check_circle : Icons.monetization_on,
-            color: Colors.yellow,
+            color: Colors.yellowAccent,
             size: 30,
           ),
         ),

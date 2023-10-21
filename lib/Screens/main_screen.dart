@@ -1,9 +1,12 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:housing_hub/data.dart';
 
 import '../defined_constants.dart';
 import '../widgets/list_componnet_widget.dart';
+import 'SearchScreen.dart';
 
 class MainPage extends StatelessWidget {
   final List<Property> properties = getPropertyList();
@@ -28,7 +31,7 @@ class MainPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _buildSearchBar(),
+          _buildSearchBar(context),
           SizedBox(
             height: 30,
           ),
@@ -85,7 +88,8 @@ class MainPage extends StatelessWidget {
       ),
     );
   }
-  Widget BottomComponnets(){
+
+  Widget BottomComponnets() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -94,7 +98,9 @@ class MainPage extends StatelessWidget {
             ListComponnetWidget(
                 orientation: LayoutOrientation.vertical,
                 height: vertical_height,
-                width: vertical_width)
+                width: vertical_width,
+                issold: false,
+            )
         ],
       ),
     );
@@ -149,35 +155,42 @@ class MainPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSearchBar() {
+  Widget _buildSearchBar(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 100, left: 30, right: 30),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: TextFormField(
-            decoration: InputDecoration(
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.grey,
-              ),
-              border: InputBorder.none,
-              hintText: "Search",
-              suffixIcon: Container(
-                margin: EdgeInsets.all(5),
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  color: Colors.indigo,
-                  borderRadius: BorderRadius.circular(5),
+      child: GestureDetector(
+        onTap: () {
+          print("hello");
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SearchPage()));
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: TextFormField(
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.grey,
                 ),
-                child: Icon(
-                  Icons.filter_list_sharp,
-                  color: Colors.white,
+                border: InputBorder.none,
+                hintText: "Search",
+                suffixIcon: Container(
+                  margin: EdgeInsets.all(5),
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.indigo,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Icon(
+                    Icons.filter_list_sharp,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

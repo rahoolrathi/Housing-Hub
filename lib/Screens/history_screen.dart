@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/VerticalList.dart';
+
 
 class HistoryPage extends StatelessWidget {
   int index=0;
@@ -7,16 +9,26 @@ class HistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home:Scaffold(
-          body: Center(
-            child: Text(
-              "History Page",
-              style: TextStyle(
-                  fontSize: 70,
-                  fontWeight: FontWeight.bold
-              ),
-            ),
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            title: appbar(),
           ),
+          body: VerticalList(true),
         )
     );
   }
+}
+Widget appbar(){
+  return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          "Purchased Houses",
+          style: TextStyle(color: Colors.black),
+        ),
+       Icon(Icons.filter_list_sharp,
+         color: Colors.black,),
+      ],
+    );
 }

@@ -15,11 +15,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/SearchPage()',
+      initialRoute: '/MainPage',
        routes: {
         '/MainPage':(context)=>HomePage(),
          '/SearchScreen':(context)=>SearchPage(),
-        '/list_commponnet':(context)=>ListComponnetWidget(orientation: LayoutOrientation.vertical,height: vertical_height,width: vertical_width),
+        '/list_commponnet':(context)=>ListComponnetWidget(orientation: LayoutOrientation.vertical,height: vertical_height,width: vertical_width,issold: true,),
        },
        home:HomePage()
     );
