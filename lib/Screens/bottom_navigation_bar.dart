@@ -26,7 +26,7 @@ class _BottomNavigationBerState extends State<BottomNavigationBer> {
       bottomNavigationBar: CurvedNavigationBar(
         height: 60,
         backgroundColor: Colors.grey.shade100,
-        color: Colors.greenAccent, // Color of the selected item
+        color: Colors.green.shade700, // Color of the selected item
         buttonBackgroundColor: Colors.grey.shade100,
         items: <Widget>[
           Icon(Icons.home, color: Colors.black,),

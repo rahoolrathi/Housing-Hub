@@ -32,14 +32,7 @@ Widget body(){
       SizedBox(height: 30,),
       ProfilePicture(),
       SizedBox(height: 20,),
-      ProfileMenu(
-        text: "My Properties",
-        icon: Icon(Icons.house,
-          weight: 22,
-          color: Colors.grey,
-        ),
-        press: (){},
-      ),
+
       ProfileMenu(
         text: "Profile Settings",
         icon: Icon(Icons.settings,
@@ -51,6 +44,14 @@ Widget body(){
       ProfileMenu(
         text: "Contact Us",
         icon: Icon(Icons.phone,
+          weight: 22,
+          color: Colors.grey,
+        ),
+        press: (){},
+      ),
+      ProfileMenu(
+        text: "About Us",
+        icon: Icon(Icons.info,
           weight: 22,
           color: Colors.grey,
         ),
@@ -86,7 +87,8 @@ Widget ProfilePicture() {
             fit: StackFit.expand,
             children: [
               CircleAvatar(
-                child: Text("R"),
+                backgroundColor: Colors.green,
+                child:Image.asset("assets/images/programmer.png",),
               ),
               Positioned(
                   bottom: 0,

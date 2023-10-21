@@ -118,7 +118,7 @@ class _ListComponnetWidgetState extends State<ListComponnetWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "400.00",
+            "\$400.00",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -128,7 +128,7 @@ class _ListComponnetWidgetState extends State<ListComponnetWidget> {
           Row(
             children: [
               Icon(
-                Icons.location_city_sharp,
+                Icons.place,
                 size: 16,
                 color: Colors.red,
               ),
