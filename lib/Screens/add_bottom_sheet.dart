@@ -52,7 +52,7 @@ class AddBottomSheet extends StatelessWidget {
                     return ListTile(
                       title: Container(
                         width: MediaQuery.of(context).size.width,
-                        height: 100,
+                        height: 80,
                         child: Column(
                           children: [
                             Row(
@@ -68,7 +68,7 @@ class AddBottomSheet extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("City"),
+                                      Text("City",style:TextStyle(fontWeight: FontWeight.w500),),
                                       Text("Karachi",style: TextStyle(color: Colors.green),)
                                     ],
                                   )
@@ -80,6 +80,9 @@ class AddBottomSheet extends StatelessWidget {
 
                             ],
                           ),
+                            SizedBox(
+                              height: 20,
+                            ),
                             Divider( // Horizontal Divider
                               color: Colors.grey.shade200,
                               thickness: 1.5, // Thickness of the divider
@@ -93,23 +96,225 @@ class AddBottomSheet extends StatelessWidget {
                     );
                   if(index==1)
                     return ListTile(
-                      title: Text("Item $index"),
+                        title: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 100,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Icons.square_foot, color: Colors.grey),
+                                  SizedBox(width: 5),
+                                  Text("Property Type", style: TextStyle(fontWeight: FontWeight.w500)),
+                                  SizedBox(width: 10), // Add spacing between text and input fields
+
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    height: 40,
+                                    width: 100, // Adjust the width based on your requirements
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15), // Rounded corners
+                                      border: Border.all(color: Colors.grey), // Border color
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 8),
+                                      child: TextField(
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number, // Allow only numeric input
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none, // No border for the input field
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Text("TO",style: TextStyle(fontWeight: FontWeight.w500)),
+                                  Container(
+                                    height: 40,
+                                    width: 100, // Adjust the width based on your requirements
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15), // Rounded corners
+                                      border: Border.all(color: Colors.grey), // Border color
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 8),
+                                      child: TextField(
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number, // Allow only numeric input
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none, // No border for the input field
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 10,),
+                              Divider( // Horizontal Divider
+                                color: Colors.grey.shade200,
+                                thickness: 1.5, // Thickness of the divider
+                                indent: 0, // Indent from the left
+                                endIndent: 0, // Indent from the right
+                              ),
+                            ],
+                          )
+
+
+                          ,
+
+
+                        )
                     );
                   if(index==2)
                     return ListTile(
-                      title: Text("Item $index"),
+                      title: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 100,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.price_check, color: Colors.grey),
+                                SizedBox(width: 5),
+                                Text("Price Range", style: TextStyle(fontWeight: FontWeight.w500)),
+                                SizedBox(width: 10), // Add spacing between text and input fields
+
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  height: 40,
+                                  width: 100, // Adjust the width based on your requirements
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15), // Rounded corners
+                                    border: Border.all(color: Colors.grey), // Border color
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 8),
+                                    child: TextField(
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number, // Allow only numeric input
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none, // No border for the input field
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Text("TO",style: TextStyle(fontWeight: FontWeight.w500)),
+                                Container(
+                                  height: 40,
+                                  width: 100, // Adjust the width based on your requirements
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15), // Rounded corners
+                                    border: Border.all(color: Colors.grey), // Border color
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 8),
+                                    child: TextField(
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number, // Allow only numeric input
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none, // No border for the input field
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10,),
+                            Divider( // Horizontal Divider
+                              color: Colors.grey.shade200,
+                              thickness: 1.5, // Thickness of the divider
+                              indent: 0, // Indent from the left
+                              endIndent: 0, // Indent from the right
+                            ),
+                          ],
+                        )
+
+
+                        ,
+
+
+                      ),
                     );
                   if(index==3)
                     return ListTile(
-                      title: Text("Item $index"),
-                    );
-                  if(index==4)
-                    return ListTile(
-                      title: Text("Item $index"),
-                    );
+                        title: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 100,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Icons.square_foot, color: Colors.grey),
+                                  SizedBox(width: 5),
+                                  Text("Area Range", style: TextStyle(fontWeight: FontWeight.w500)),
+                                  SizedBox(width: 10), // Add spacing between text and input fields
 
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    height: 40,
+                                    width: 100, // Adjust the width based on your requirements
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15), // Rounded corners
+                                      border: Border.all(color: Colors.grey), // Border color
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 8),
+                                      child: TextField(
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number, // Allow only numeric input
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none, // No border for the input field
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Text("TO",style: TextStyle(fontWeight: FontWeight.w500)),
+                                  Container(
+                                    height: 40,
+                                    width: 100, // Adjust the width based on your requirements
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15), // Rounded corners
+                                      border: Border.all(color: Colors.grey), // Border color
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 8),
+                                      child: TextField(
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number, // Allow only numeric input
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none, // No border for the input field
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                            ],
+                          )
+
+
+                          ,
+
+
+                        )
+                    );
                  },
-                 childCount: 5, // Replace this with the actual number of items in your list
+                 childCount: 4, // Replace this with the actual number of items in your list
                ),
              ),
            ],
