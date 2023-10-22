@@ -5,6 +5,7 @@ import 'package:housing_hub/data.dart';
 import '../defined_constants.dart';
 import '../widgets/list_componnet_widget.dart';
 import 'SearchScreen.dart';
+import 'add_bottom_sheet.dart';
 
 class MainPage extends StatelessWidget {
   final List<Property> properties = getPropertyList();
@@ -210,7 +211,7 @@ class MainPage extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: (){
-                      showModalBottomSheet(context: context, builder: buildButtomSheet);
+                      showModalBottomSheet(context: context, builder:(context)=>AddBottomSheet());
                     },
                     child:Icon(
                     Icons.filter_list_sharp,
@@ -225,14 +226,38 @@ class MainPage extends StatelessWidget {
     );
   }
 }
-Widget buildButtomSheet(BuildContext context){
+Widget buildButtomSheet(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20)
+      color: Colors.white,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(30),
+        topRight: Radius.circular(20),
+      ),
+    ),
+    child: Column(
+      children: [
+        // Add your bottom sheet content here
+        ListTile(
+          title: Text('Option 1'),
+          onTap: () {
+            // Handle option 1
+            Navigator.pop(context);
+          },
         ),
-
+        ListTile(
+          title: Text('Option 2'),
+          onTap: () {
+            // Handle option 2
+            Navigator.pop(context);
+          },
+        ),
+        // Add more options if needed
+      ],
+    ),
   );
 }
+
 Widget MyHeaderDrawer() {
   return Container(
     color: Colors.green.shade700,
