@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:housing_hub/Screens/main_screen.dart';
-
-import 'bottom_navigation_bar.dart';
+import 'home_screen.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -74,10 +72,10 @@ class LoginPage extends StatelessWidget {
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> BottomNavigationBer()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
                         print("login");
                       },
-                      color: Color(0xff0095FF),
+                      color: Colors.green.shade700,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),

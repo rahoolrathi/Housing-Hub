@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/VerticalList.dart';
+import 'VerticalList.dart';
 
 
 class HistoryPage extends StatelessWidget {
   int index=0;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home:Scaffold(
+    return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
             title: appbar(),
           ),
           body: VerticalList(true),
-        )
-    );
+        );
+
   }
 }
 Widget appbar(){
