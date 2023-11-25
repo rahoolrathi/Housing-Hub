@@ -1,163 +1,222 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class SignupPage extends StatelessWidget {
+import '../classess/CustomError.dart';
+import '../classess/User.dart';
+import 'login_screen.dart';
+
+class SignupPage extends StatefulWidget {
   @override
+  State<SignupPage> createState() => _SignupPageState();
+
+}
+
+class _SignupPageState extends State<SignupPage> {
+  TextEditingController fullnameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phonenumberController = TextEditingController();
+  TextEditingController PasswordController = TextEditingController();
+  bool _obscurePassword = true; // Initially hide the password
+
+  void _handleSignup() async {
+    String fullname = fullnameController.text;
+    String email = emailController.text;
+    String phonenumberText = phonenumberController.text;
+    String password = PasswordController.text;
+    if(phonenumberText.isEmpty)
+      throw new CustomError("fill all fields");
+    int phonenumber;
+    try {
+      phonenumber = int.parse(phonenumberText);
+    } catch (e) {
+      // Display an error if phone number is not a valid integer
+      _showDialog('Error', 'Invalid phone number');
+      return;
+    }
+
+    final User _user = User(
+      email: email,
+      fullname: fullname,
+      xtra: "d",
+      phonenumber: phonenumber,
+      password: password,
+      userimage: null,
+    );
+    try {
+      await _user.CreateNewUser();
+      _showDialog('Success', 'User created successfully!');
+    } catch (error) {
+      print('Error creating user: $error');
+      _showDialog('Error', ' ${error.toString()}');
+    }
+  }
+  void _showDialog(String title, String content) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.black,),
-
-
-        ), systemOverlayStyle: SystemUiOverlayStyle.dark,
-      ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 40),
           height: MediaQuery.of(context).size.height - 50,
           width: double.infinity,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  Text("Sign up",
+                  Text(
+                    "Sign up",
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
-
-                    ),),
-                  SizedBox(height: 20,),
-                  Text("Create an account, It's free ",
-                    style: TextStyle(
-                        fontSize: 15,
-                        color:Colors.grey[700]),)
-
-
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Create an account, It's free ",
+                    style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+                  )
                 ],
               ),
+              SizedBox(height: 30),
               Column(
                 children: <Widget>[
-                  inputFile(label: "Username"),
-                  inputFile(label: "Email"),
-                  inputFile(label: "Password", obscureText: true),
-                  inputFile(label: "Confirm Password ", obscureText: true),
+                  inputFile("full name", fullnameController, Icons.person),
+                  SizedBox(height: 10),
+                  inputFile("Email", emailController, Icons.email),
+                  SizedBox(height: 10),
+                  inputFile("Phone number", phonenumberController, Icons.phone),
+                  SizedBox(height: 10),
+                  // Use a TextFormField for the password with an eye icon
+                  TextFormField(
+                    controller: PasswordController,
+                    obscureText: _obscurePassword,
+                    decoration: InputDecoration(
+                      hintText: "Password",
+                      prefixIcon: Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
+                      ),
+                      contentPadding:
+                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade400),
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade400),
+                      ),
+                    ),
+                  ),
                 ],
               ),
+              SizedBox(height: 30),
               Container(
-                padding: EdgeInsets.only(top: 3, left: 3),
-                decoration:
-                BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border(
-                      bottom: BorderSide(color: Colors.black),
-                      top: BorderSide(color: Colors.black),
-                      left: BorderSide(color: Colors.black),
-                      right: BorderSide(color: Colors.black),
-
-
-
-                    )
-
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(color: Colors.green.shade700),
                 ),
                 child: MaterialButton(
                   minWidth: double.infinity,
                   height: 60,
-                  onPressed: () {},
+                  onPressed: _handleSignup,
                   color: Colors.green.shade700,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
-
                   ),
                   child: Text(
-                    "Sign up", style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                    color: Colors.white,
-
+                    "Sign up",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
                   ),
-                  ),
-
                 ),
-
-
-
               ),
+              SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text("Already have an account?"),
-                  Text(" Login", style:TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                    },
+                    child: Text(
+                      " Login",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
-                  )
                 ],
               )
-
-
-
             ],
-
           ),
-
-
         ),
-
       ),
-
     );
   }
 }
-
-
-
-// we will be creating a widget for text field
-Widget inputFile({label, obscureText = false})
-{
+Widget inputFile(String hint, TextEditingController? controller, IconData? icon) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Text(
-        label,
-        style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color:Colors.black87
-        ),
-
-      ),
       SizedBox(
         height: 5,
       ),
       TextField(
-        obscureText: obscureText,
+        controller: controller,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0,
-                horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Colors.grey.shade400
-              ),
-
-            ),
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade400)
-            )
+          hintText: hint,
+          prefixIcon: icon != null ? Icon(icon) : null,
+          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.shade400),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.shade400),
+          ),
         ),
       ),
-      SizedBox(height: 10,)
+      SizedBox(height: 10),
     ],
   );
 }
